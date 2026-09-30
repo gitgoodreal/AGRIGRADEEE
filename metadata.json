@@ -1,0 +1,6 @@
+{
+  "name": "AgriGrade — Potato Quality Assessment & Grading",
+  "description": "AI-powered agricultural quality assessment and grading system for potatoes with computer vision analysis, configurable grading engine, batch tracking, human review, and QR verification.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collection": "users",
+      "fields": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string" },
+        "organization": { "type": "string" }
+      }
+    },
+    "Batch": {
+      "collection": "batches",
+      "fields": {
+        "name": { "type": "string" },
+        "product": { "type": "string" },
+        "operatorName": { "type": "string" },
+        "targetQuantity": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "Inspection": {
+      "collection": "inspections",
+      "fields": {
+        "batchId": { "type": "string" },
+        "vegetableType": { "type": "string" },
+        "isPotato": { "type": "boolean" },
+        "timestamp": { "type": "string" },
+        "aiObservations": { "type": "map" },
+        "gradingResult": { "type": "map" },
+        "humanReview": { "type": "map" }
+      }
+    },
+    "HumanReview": {
+      "collection": "humanReviews",
+      "fields": {
+        "inspectionId": { "type": "string" },
+        "reviewerName": { "type": "string" },
+        "originalGrade": { "type": "string" },
+        "finalGrade": { "type": "string" },
+        "notes": { "type": "string" },
+        "timestamp": { "type": "string" }
+      }
+    },
+    "BatchReport": {
+      "collection": "reports",
+      "fields": {
+        "batchId": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "summary": { "type": "map" },
+        "verificationId": { "type": "string" }
+      }
+    },
+    "VerificationRecord": {
+      "collection": "verificationRecords",
+      "fields": {
+        "reportId": { "type": "string" },
+        "batchId": { "type": "string" },
+        "product": { "type": "string" },
+        "inspectionCount": { "type": "number" },
+        "gradeDistribution": { "type": "map" },
+        "digitalSignature": { "type": "string" },
+        "verificationStatus": { "type": "string" }
+      }
+    }
+  }
+}

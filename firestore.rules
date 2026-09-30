@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Agricultural batches
+    match /batches/{batchId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Potato Quality Inspections
+    match /inspections/{inspectionId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Human Review decisions
+    match /humanReviews/{reviewId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Batch Reports (authenticated QA / field managers)
+    match /reports/{reportId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Public QR Verification Records
+    // Publicly readable for consumers/distributors to scan QR codes without login
+    // Strictly read-only for public, writes restricted to verified backend/authenticated inspectors
+    match /verificationRecords/{recordId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+  }
+}
